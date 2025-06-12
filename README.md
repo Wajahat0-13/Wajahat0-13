@@ -6,8 +6,6 @@ train_df = pd.read_csv("titanic.csv")
 
 test_df = pd.read_csv("test.csv")
 
-#data cleaning 
-
 train_df['Age'].fillna(train_df['Age'].median(), inplace=True)
 
 test_df['Age'].fillna(test_df['Age'].median(), inplace=True)
@@ -18,8 +16,6 @@ train_df.drop(['Cabin', 'Ticket'], axis=1, inplace=True)
 
 test_df.drop(['Cabin', 'Ticket'], axis=1, inplace=True)
 
-# Noise Reduction (Binning)
-
 bins = [0, 12, 20, 40, 60, 100]
 
 labels = ['Child', 'Teen', 'Adult', 'Senior', 'Elder']
@@ -27,8 +23,6 @@ labels = ['Child', 'Teen', 'Adult', 'Senior', 'Elder']
 train_df['AgeGroup'] = pd.cut(train_df['Age'], bins=bins, labels=labels)
 
 test_df['AgeGroup'] = pd.cut(test_df['Age'], bins=bins, labels=labels)
-
-# Data Integration
 
 combined_df = pd.concat([train_df, test_df], axis=0, ignore_index=True)
 
